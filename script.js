@@ -12,14 +12,38 @@ function configuraBotoes() {
   botaoDog.addEventListener('click', () => listAnimals('Dog'))
 }
 
+function creatListAnimals(pet) {
+  const petLi = document.createElement('li');
+  const petImg = document.createElement('img');
+  const petName = document.createElement('p');
+  const petBreed = document.createElement('p');
+  const petGender = document.createElement('p');
+  if (pet.primary_photo_cropped) petImg.src = pet.primary_photo_cropped.small;
+  petName.innerHTML = `Nome: ${pet.name}`;
+  petBreed.innerHTML = `Raça: ${pet.breeds.primary}`;
+  petGender.innerHTML = `Sexo: ${pet.gender}`;
+  petLi.appendChild(petImg);
+  petLi.appendChild(petName);
+  petLi.appendChild(petBreed);
+  petLi.appendChild(petGender);
+  return petLi;
+}
+
 async function listAnimals(specie) {
   const result = await fetchAnimals(specie);
   const lista = Array.from(result.animals)
-  // console.log(lista);
+  const petOl = document.querySelector('.list-pet');
+  console.log(lista);
+  lista.forEach((pet) => {
+    console.log('nome ', pet.name);
+    console.log('sexo ', pet.gender);
+    console.log('raça ', pet.breeds.primary);
+    if (pet.primary_photo_cropped) console.log('imagem ', pet.primary_photo_cropped.small);
+    petOl.appendChild(creatListAnimals(pet));
+  });
 }
 
 // Random Animals 
-
 
 const animalsRandom = () => {
   

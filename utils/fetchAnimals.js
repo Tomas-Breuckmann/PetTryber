@@ -7,7 +7,7 @@ async function fetchAnimals() {
     }
   };
 
-  const url = `https://api.petfinder.com/v2/animals?page=2`;
+  const url = `https://api.petfinder.com/v2/animals`;
   const response = await fetch(url, requestInfo);
   const data = await response.json();
   return data;

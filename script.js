@@ -46,7 +46,7 @@ function generateAnimalElements(animal) {
 
   animalElement.appendChild(img)
   animalElement.appendChild(createCustomElement('p', 'animal-name', `Nome: <strong>${name.substring(0,15)}</strong>`));
-  animalElement.appendChild(createCustomElement('p', 'animal-breed', `Raça: <strong>${breeds.primary}</strong>`));
+  animalElement.appendChild(createCustomElement('p', 'animal-breed', `Raça: <strong>${breeds.primary.substring(0,20)}</strong>`));
   animalElement.appendChild(createCustomElement('p', 'animal-gender', `Sexo: <strong>${gender}</strong>`));
   animalsList.appendChild(animalElement);
 }

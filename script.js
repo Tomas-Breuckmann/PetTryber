@@ -7,6 +7,7 @@ window.onload = () => {
 function configuraBotoes() {
   const botaoCat = document.querySelector('.cat');
   const botaoDog = document.querySelector('.dog');
+  const botaoDog = document.querySelector('.other');
   botaoCat.addEventListener('click', () => listAnimals('Cat'))
   botaoDog.addEventListener('click', () => listAnimals('Dog'))
 }

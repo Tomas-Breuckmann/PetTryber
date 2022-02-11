@@ -5,6 +5,20 @@ window.onload = () => {
   configuraBotoes();
 }
 
+function showLoadingAlert() {
+  const frameLoading = document.getElementById('loading');
+  const loadingAlert = document.createElement('span');
+  loadingAlert.className = 'loading';
+  loadingAlert.innerText = 'carregando...';
+  frameLoading.appendChild(loadingAlert);
+}
+
+function notShowLoadingAlert() {
+  const frameLoading = document.getElementById('loading');
+  const loadingAlert = document.querySelector('.loading');
+  frameLoading.removeChild(loadingAlert);
+}
+
 function configuraBotoes() {
   const botaoCat = document.querySelector('.cat');
   const botaoDog = document.querySelector('.dog');
@@ -31,7 +45,9 @@ function generateAnimalElements(animal) {
   img.src = photoLocalizer(primary_photo_cropped);
 
   animalElement.appendChild(img)
-  animalElement.appendChild(createCustomElement('p', 'animal-name', `<strong>Nome:</strong> ${name}`));
+  animalElement.appendChild(createCustomElement('p', 'animal-name', `Nome: <strong>${name.substring(0,15)}</strong>`));
+  animalElement.appendChild(createCustomElement('p', 'animal-breed', `Raça: <strong>${breeds.primary}</strong>`));
+  animalElement.appendChild(createCustomElement('p', 'animal-gender', `Sexo: <strong>${gender}</strong>`));
   animalsList.appendChild(animalElement);
 }
 
@@ -41,8 +57,10 @@ function listAnimals(list) {
 }
 
 async function getAnimals(specie) {
+  showLoadingAlert();
   const result = await fetchAnimals(specie);
   listAnimals(result)
+  notShowLoadingAlert();
 }
 
 // Random Animals 

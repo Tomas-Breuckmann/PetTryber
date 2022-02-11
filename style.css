@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Josefin+Sans:wght@200;500;700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Poppins;
+}
+body {
+  background-image: linear-gradient(#836fff99, white) ;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+header{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #836fff;
+  margin: auto;
+  width: 1000px;
+  height: 80px;
+  padding: 40px 20px;
+  box-shadow: 0px 30px 20px 1px gray;
+  border-radius: 20px 20px 0 0;
+}
+header h1 {
+  font-size: 3.0rem;
+  font-weight: 700;
+  color: #fff;
+}
+header h2 {
+  font-family: Dancing Script;
+  color: lightsteelblue;
+  font-size: 2.25rem;
+}
+main {
+  display: flex;
+  flex-direction: column;
+  background-color: #483d8b;
+  margin: auto;
+  width: 1000px;
+  height: 100vh;
+  box-shadow: 0px 30px 20px 1px gray;
+  border-radius: 0 0 20px 20px;
+}
+.container-call {
+  width: 100%;
+  height: 300px;
+  background: url('images/pets001.jpg') no-repeat center; 
+  background-color: #fff;
+}
+.container-pets {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding: 30px;
+}
+.options {
+  width: 250px;
+  height: 350px;
+  border-radius: 20px;
+  background: gainsboro;
+  display: flex;
+  flex-direction: column;
+}
+.img-pet {
+  width: 100%;
+  height: 270px;
+  background-color: gray;
+}
+.specie-pet {
+  display: flex;
+  width: 100%;
+  height: 80px;
+  border-radius: 0 0 20px 20px;
+  background-color: lightsteelblue;
+  justify-content: center;
+  align-items: center;
+}
+.img-pet img {
+  border-radius: 20px 20px 0 0;
+}
+.specie-pet p {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #fff;
+}
+.specie-pet p:hover {
+  color: darkblue;
+  cursor: pointer;
+}

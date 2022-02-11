@@ -32,5 +32,5 @@ async function fetchAnimals() {
 }
 
 window.onload = () => {
-  fetchAnimals()
+  fetchAnimals();
 }

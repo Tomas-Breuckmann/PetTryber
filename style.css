@@ -9,7 +9,7 @@
 
 body {
   background-image: linear-gradient(#836fff99, white);
-  margin-top: 50px;
+  margin-top: 30px;
   margin-bottom: 50px;
 }
 
@@ -152,9 +152,9 @@ p.animal-container {
 }
 
 .loading {
-  position: absolute;
-  top: 15px;
-  right: 375px;
+  position: fixed;
+  top: 125px;
+  right: 570px;
   width: 250px;
   height: 60px;
   font-size: 1.5em;

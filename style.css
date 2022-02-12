@@ -167,19 +167,19 @@ p.animal-container {
 }
 
 #loading {
+  position: fixed;
   display: flex;
+  width: 100%;
+  justify-content: center;
+  top: 5vh;
 }
 
 .loading {
-  position: fixed;
-  top: 125px;
-  right: 570px;
   width: 250px;
   height: 60px;
   font-size: 1.5em;
   line-height: 60px;
   text-align: center;
-  display: block;
   background: darkblue;
   color: white;
   border-radius: 50px;

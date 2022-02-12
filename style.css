@@ -129,6 +129,13 @@ main {
   font-size: 12px;
 }
 
+.animal-container:hover {
+  cursor: pointer;
+  box-shadow: 0px 0px 10px 1px LightSkyBlue;
+  background: navy;
+  color: white;
+}
+
 p.animal-container {
   font-family: 'Roboto Condensed';
 }

@@ -1,4 +1,4 @@
-async function fetchAnimals(specie) {
+async function fetchPet(petId) {
   const token = await getToken()
   const requestInfo = {
     method: 'GET',
@@ -8,7 +8,7 @@ async function fetchAnimals(specie) {
     }
   };
 
-  const url = `https://api.petfinder.com/v2/animals?type=${specie}`;
+  const url = `https://api.petfinder.com/v2/animals/${petId}`;
   const response = await fetch(url, requestInfo);
   const data = await response.json();
   return data;

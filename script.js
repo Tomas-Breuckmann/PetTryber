@@ -7,6 +7,11 @@ window.onload = () => {
 
 let currentAnimal;
 
+const getElementOrClosest = (sectionClass, target) => 
+  target.classList.contains(sectionClass)
+    ? target
+    : target.closest(sectionClass);
+
 function showLoadingAlert() {
   const frameLoading = document.getElementById('loading');
   const loadingAlert = document.createElement('span');
@@ -41,15 +46,17 @@ function photoLocalizer(photo) {
 
 function generateAnimalElements(animal) {
   const animalsList = document.querySelector('.available-animals');
-  const { name, age, gender, breeds, pagination, primary_photo_cropped } = animal;
+  const { id, name, age, gender, breeds, pagination, primary_photo_cropped } = animal;
   const animalElement = createCustomElement('li', 'animal-container');
   const img = createCustomElement('img', 'animal-image');
   img.src = photoLocalizer(primary_photo_cropped);
 
-  animalElement.appendChild(img)
+  animalElement.id = animal.id;
+  animalElement.appendChild(img);
   animalElement.appendChild(createCustomElement('p', 'animal-name', `Nome: <strong>${name.substring(0,15)}</strong>`));
   animalElement.appendChild(createCustomElement('p', 'animal-breed', `Raça: <strong>${breeds.primary.substring(0,20)}</strong>`));
   animalElement.appendChild(createCustomElement('p', 'animal-gender', `Sexo: <strong>${gender}</strong>`));
+  animalElement.addEventListener('click', getPet);
   animalsList.appendChild(animalElement);
 }
 
@@ -67,6 +74,18 @@ function clearList() {
     animalsList.innerHTML = '';
     animalsList.style.opacity = '100';
   }, 1000);
+}
+
+async function getPet({ target }) {
+  showLoadingAlert();
+  const petSelected = getElementOrClosest('.animal-container', target);
+  const petId = petSelected.id;
+  console.log(petSelected);
+  console.log(petId);
+  const result = await fetchPet(petId);
+  // listAnimals(result);
+  console.log(result);
+  notShowLoadingAlert();
 }
 
 async function getAnimals(specie) {

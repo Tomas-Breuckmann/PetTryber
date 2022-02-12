@@ -65,7 +65,7 @@ main {
   padding: 30px;
 }
 
-.options {
+.pets {
   width: 250px;
   height: 350px;
   border-radius: 20px;
@@ -74,14 +74,29 @@ main {
   flex-direction: column;
 }
 
-.options:hover p {
+.pets:hover p {
   color: white;
 }
 
-.options:hover {
+.pets:hover {
   box-shadow: 0px 0px 10px 1px LightSkyBlue;
   cursor: pointer;
   background: navy;
+}
+
+#options-dog.item-selected,
+#options-cat.item-selected,
+#options-other.item-selected {
+  box-shadow: 0px 0px 10px 1px LightSkyBlue;
+  cursor: pointer;
+  background: navy;
+  color: white;
+}
+
+#options-dog.item-selected p,
+#options-cat.item-selected p,
+#options-other.item-selected p {
+  color: white;
 }
 
 .img-pet {

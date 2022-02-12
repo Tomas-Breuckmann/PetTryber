@@ -60,13 +60,6 @@ function generateAnimalElements(animal) {
   animalsList.appendChild(animalElement);
 }
 
-function listAnimals(list) {
-  const { animals, pagination } = list;
-  clearList();
-  setTimeout(() => { animals.forEach(generateAnimalElements) }, 1000);
-  ;
-}
-
 function clearList() {
   const animalsList = document.querySelector('.available-animals');
   animalsList.style.opacity = '0';
@@ -76,6 +69,33 @@ function clearList() {
   }, 1000);
 }
 
+function listAnimals(list, clearMode) {
+  const { animals, pagination } = list;
+  if (clearMode) clearList();
+  setTimeout(() => {
+    animals.forEach(generateAnimalElements);
+    showMoreButton(pagination.current_page);
+  }, 1000);
+  ;
+}
+
+async function showMoreAnimals(event) {
+  const specie = currentAnimal
+  const page = `page=${event.target.id}`
+  event.target.remove()
+  const result = await fetchAnimals(`${specie}&${page}`);
+  listAnimals(result);
+}
+
+function showMoreButton(currentPage) {
+  const animalsList = document.querySelector('.available-animals');
+  const nextPage = currentPage + 1
+  const button = createCustomElement('button', 'more-animals-button', 'Mostrar mais')
+  button.id = nextPage;
+  button.addEventListener('click', showMoreAnimals)
+  animalsList.appendChild(button)
+}
+
 async function getPet({ target }) {
   showLoadingAlert();
   const petSelected = getElementOrClosest('.animal-container', target);
@@ -83,7 +103,6 @@ async function getPet({ target }) {
   console.log(petSelected);
   console.log(petId);
   const result = await fetchPet(petId);
-  // listAnimals(result);
   console.log(result);
   notShowLoadingAlert();
 }
@@ -93,7 +112,7 @@ async function getAnimals(specie) {
     showLoadingAlert();
     currentAnimal = specie;
     const result = await fetchAnimals(specie);
-    listAnimals(result);
+    listAnimals(result, true);
     notShowLoadingAlert();
   }
 }

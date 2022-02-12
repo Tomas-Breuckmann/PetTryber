@@ -27,11 +27,20 @@ function notShowLoadingAlert() {
 }
 
 function configuraBotoes() {
-  const botaoCat = document.querySelector('.cat');
-  const botaoDog = document.querySelector('.dog');
+  const botaoCat = document.querySelector('#options-cat');
+  const botaoDog = document.querySelector('#options-dog');
   botaoCat.addEventListener('click', () => getAnimals('Cat'));
   botaoDog.addEventListener('click', () => getAnimals('Dog'));
 }
+
+const clearSelectedItem = (containerSelector) => {
+  const element = document.querySelector(`${containerSelector}`);
+  console.log(element);
+
+  if (element) {
+    element.classList.remove('item-selected');
+  }
+};
 
 function createCustomElement(tag, theClass, content) {
   const element = document.createElement(tag);
@@ -107,14 +116,15 @@ async function getPet({ target }) {
   showLoadingAlert();
   const petSelected = getElementOrClosest('.animal-container', target);
   const petId = petSelected.id;
-  console.log(petSelected);
-  console.log(petId);
   const result = await fetchPet(petId);
   console.log(result);
   notShowLoadingAlert();
 }
 
 async function getAnimals(specie) {
+  const selectedSpecie = document.querySelector(`#options-${specie.toLowerCase()}`);
+  clearSelectedItem('.item-selected')
+  selectedSpecie.classList.add('item-selected');
   if (currentAnimal !== specie) {
     showLoadingAlert();
     currentAnimal = specie;

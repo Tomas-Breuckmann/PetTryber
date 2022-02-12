@@ -84,6 +84,10 @@ main {
   background: navy;
 }
 
+.pets:active {
+  filter: brightness(1.5);
+}
+
 #options-dog.item-selected,
 #options-cat.item-selected,
 #options-other.item-selected {
@@ -184,4 +188,45 @@ p.animal-container {
   color: white;
   border-radius: 50px;
   z-index: 50;
+}
+
+.more-animals-button {
+  margin-top: 10px;
+  width: 180px;
+  height: 40px;
+  font-size: 1.25em;
+  font-weight: 700;
+  line-height: 40px;
+  text-align: center;
+  background: lightSteelblue;
+  color: navy;
+  border-radius: 50px;
+  cursor: pointer;
+}
+
+.more-animals-button:active,
+.up-button:active {
+  filter: brightness(1.5);
+}
+
+.more-animals-button:hover,
+.up-button:hover {
+  box-shadow: 0px 0px 10px 1px LightSkyBlue;
+  background: navy;
+  color: white;
+}
+
+.up-button {
+  margin-top: 10px;
+  margin-left: 10px;
+  width: 40px;
+  height: 40px;
+  font-size: 2em;
+  font-weight: 700;
+  line-height: 45px;
+  text-align: center;
+  background: lightSteelblue;
+  color: navy;
+  border-radius: 50px;
+  cursor: pointer;
 }

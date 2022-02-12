@@ -5,6 +5,8 @@ window.onload = () => {
   configuraBotoes();
 }
 
+let currentAnimal;
+
 const getElementOrClosest = (sectionClass, target) => 
   target.classList.contains(sectionClass)
     ? target
@@ -60,7 +62,18 @@ function generateAnimalElements(animal) {
 
 function listAnimals(list) {
   const { animals, pagination } = list;
-  animals.forEach(generateAnimalElements);
+  clearList();
+  setTimeout(() => { animals.forEach(generateAnimalElements) }, 1000);
+  ;
+}
+
+function clearList() {
+  const animalsList = document.querySelector('.available-animals');
+  animalsList.style.opacity = '0';
+  setTimeout(() => {
+    animalsList.innerHTML = '';
+    animalsList.style.opacity = '100';
+  }, 1000);
 }
 
 async function getPet({ target }) {
@@ -76,11 +89,13 @@ async function getPet({ target }) {
 }
 
 async function getAnimals(specie) {
-  showLoadingAlert();
-  const result = await fetchAnimals(specie);
-  listAnimals(result);
-  // console.log(result);
-  notShowLoadingAlert();
+  if (currentAnimal !== specie) {
+    showLoadingAlert();
+    currentAnimal = specie;
+    const result = await fetchAnimals(specie);
+    listAnimals(result);
+    notShowLoadingAlert();
+  }
 }
 
 // Random Animals 

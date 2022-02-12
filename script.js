@@ -41,7 +41,14 @@ function createCustomElement(tag, theClass, content) {
 }
 
 function photoLocalizer(photo) {
-  return photo ? photo.small : 'https://c.tenor.com/RVvnVPK-6dcAAAAM/reload-cat.gif';
+  let randomURL;
+  if (currentAnimal === 'Dog') {
+    randomURL = 'https://placedog.net/280?'
+  } else if (currentAnimal === 'Cat') {
+    randomURL = 'https://cataas.com/cat?height=280&'
+  }
+  
+  return photo ? photo.small : `${randomURL}random=${Math.random()}`;
 }
 
 function generateAnimalElements(animal) {

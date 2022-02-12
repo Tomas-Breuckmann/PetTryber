@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Josefin+Sans:wght@200;500;700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Josefin+Sans:wght@200;500;700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto+Condensed:wght@300;700&display=swap');
 
 * {
   margin: 0;
@@ -14,6 +14,7 @@ body {
 }
 
 header {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -21,9 +22,10 @@ header {
   margin: auto;
   width: 1000px;
   height: 80px;
-  padding: 40px 20px;
+  padding: 20px;
   box-shadow: 0px 30px 20px 1px gray;
   border-radius: 20px 20px 0 0;
+  z-index: -10;
 }
 
 header h1 {
@@ -35,6 +37,7 @@ header h1 {
 header h2 {
   font-family: Dancing Script;
   color: lightsteelblue;
+  margin-left: 150px;
   font-size: 2.25rem;
 }
 
@@ -74,6 +77,7 @@ main {
 .img-pet {
   width: 100%;
   height: 270px;
+  border-radius: 20px 20px 0 0;
   background-color: gray;
   border-radius: 20px 20px 0 0;
 }
@@ -107,22 +111,51 @@ main {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  margin: 20px 0 50px 0;
+  transition: 1s;
 }
 
 .animal-container {
-  width: 200px;
-  height: 300px;
-  border-radius: 20px;
-  background: gainsboro;
+  width: 220px;
+  height: 280px;
+  border-radius: 10px;
+  background: lightSteelblue;
+  color: navy;
   display: flex;
   flex-direction: column;
   margin: 10px;
   align-items: center;
+  justify-content: space-between;
+  font-size: 12px;
+}
+
+p.animal-container {
+  font-family: 'Roboto Condensed';
 }
 
 .animal-image {
-  border-radius: 20px 20px 0 0;
+  border-radius: 10px 10px 0 0;
   width: 100%;
-  height: 200px;
+  height: 220px;
   object-fit: cover;
+}
+
+#loading {
+  display: flex;
+}
+
+.loading {
+  position: absolute;
+  top: 15px;
+  right: 375px;
+  width: 250px;
+  height: 60px;
+  font-size: 1.5em;
+  line-height: 60px;
+  text-align: center;
+  display: block;
+  background: darkblue;
+  color: white;
+  border-radius: 50px;
+  z-index: 50;
 }

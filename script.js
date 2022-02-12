@@ -5,6 +5,22 @@ window.onload = () => {
   configuraBotoes();
 }
 
+let currentAnimal;
+
+function showLoadingAlert() {
+  const frameLoading = document.getElementById('loading');
+  const loadingAlert = document.createElement('span');
+  loadingAlert.className = 'loading';
+  loadingAlert.innerText = 'carregando...';
+  frameLoading.appendChild(loadingAlert);
+}
+
+function notShowLoadingAlert() {
+  const frameLoading = document.getElementById('loading');
+  const loadingAlert = document.querySelector('.loading');
+  frameLoading.removeChild(loadingAlert);
+}
+
 function configuraBotoes() {
   const botaoCat = document.querySelector('.cat');
   const botaoDog = document.querySelector('.dog');
@@ -31,22 +47,39 @@ function generateAnimalElements(animal) {
   img.src = photoLocalizer(primary_photo_cropped);
 
   animalElement.appendChild(img)
-  animalElement.appendChild(createCustomElement('p', 'animal-name', `<strong>Nome:</strong> ${name}`));
+  animalElement.appendChild(createCustomElement('p', 'animal-name', `Nome: <strong>${name.substring(0,15)}</strong>`));
+  animalElement.appendChild(createCustomElement('p', 'animal-breed', `Raça: <strong>${breeds.primary.substring(0,20)}</strong>`));
+  animalElement.appendChild(createCustomElement('p', 'animal-gender', `Sexo: <strong>${gender}</strong>`));
   animalsList.appendChild(animalElement);
 }
 
 function listAnimals(list) {
   const { animals, pagination } = list;
-  animals.forEach(generateAnimalElements);
+  clearList();
+  setTimeout(() => { animals.forEach(generateAnimalElements) }, 1000);
+  ;
+}
+
+function clearList() {
+  const animalsList = document.querySelector('.available-animals');
+  animalsList.style.opacity = '0';
+  setTimeout(() => {
+    animalsList.innerHTML = '';
+    animalsList.style.opacity = '100';
+  }, 1000);
 }
 
 async function getAnimals(specie) {
-  const result = await fetchAnimals(specie);
-  listAnimals(result)
+  if (currentAnimal !== specie) {
+    showLoadingAlert();
+    currentAnimal = specie;
+    const result = await fetchAnimals(specie);
+    listAnimals(result);
+    notShowLoadingAlert();
+  }
 }
 
 // Random Animals 
-
 
 const animalsRandom = () => {
   const random = (maxNumber) => Math.floor(Math.random() * maxNumber) + 1;

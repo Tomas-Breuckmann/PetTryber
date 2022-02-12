@@ -21,7 +21,7 @@ header {
   margin: auto;
   width: 1000px;
   height: 80px;
-  padding: 40px 20px;
+  padding: 20px;
   box-shadow: 0px 30px 20px 1px gray;
   border-radius: 20px 20px 0 0;
   z-index: -10;
@@ -36,6 +36,7 @@ header h1 {
 header h2 {
   font-family: Dancing Script;
   color: lightsteelblue;
+  margin-left: 150px;
   font-size: 2.25rem;
 }
 

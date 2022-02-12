@@ -39,12 +39,13 @@ function photoLocalizer(photo) {
 
 function generateAnimalElements(animal) {
   const animalsList = document.querySelector('.available-animals');
-  const { name, age, gender, breeds, pagination, primary_photo_cropped } = animal;
+  const { id, name, age, gender, breeds, pagination, primary_photo_cropped } = animal;
   const animalElement = createCustomElement('li', 'animal-container');
   const img = createCustomElement('img', 'animal-image');
   img.src = photoLocalizer(primary_photo_cropped);
 
-  animalElement.appendChild(img)
+  animalElement.id = animal.id;
+  animalElement.appendChild(img);
   animalElement.appendChild(createCustomElement('p', 'animal-name', `Nome: <strong>${name.substring(0,15)}</strong>`));
   animalElement.appendChild(createCustomElement('p', 'animal-breed', `Raça: <strong>${breeds.primary.substring(0,20)}</strong>`));
   animalElement.appendChild(createCustomElement('p', 'animal-gender', `Sexo: <strong>${gender}</strong>`));
@@ -59,12 +60,12 @@ function listAnimals(list) {
 async function getAnimals(specie) {
   showLoadingAlert();
   const result = await fetchAnimals(specie);
-  listAnimals(result)
+  listAnimals(result);
+  // console.log(result);
   notShowLoadingAlert();
 }
 
 // Random Animals 
-
 
 const animalsRandom = () => {
   const random = (maxNumber) => Math.floor(Math.random() * maxNumber) + 1;

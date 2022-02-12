@@ -5,6 +5,11 @@ window.onload = () => {
   configuraBotoes();
 }
 
+const getElementOrClosest = (sectionClass, target) => 
+  target.classList.contains(sectionClass)
+    ? target
+    : target.closest(sectionClass);
+
 function showLoadingAlert() {
   const frameLoading = document.getElementById('loading');
   const loadingAlert = document.createElement('span');
@@ -49,12 +54,25 @@ function generateAnimalElements(animal) {
   animalElement.appendChild(createCustomElement('p', 'animal-name', `Nome: <strong>${name.substring(0,15)}</strong>`));
   animalElement.appendChild(createCustomElement('p', 'animal-breed', `Raça: <strong>${breeds.primary.substring(0,20)}</strong>`));
   animalElement.appendChild(createCustomElement('p', 'animal-gender', `Sexo: <strong>${gender}</strong>`));
+  animalElement.addEventListener('click', getPet);
   animalsList.appendChild(animalElement);
 }
 
 function listAnimals(list) {
   const { animals, pagination } = list;
   animals.forEach(generateAnimalElements);
+}
+
+async function getPet({ target }) {
+  showLoadingAlert();
+  const petSelected = getElementOrClosest('.animal-container', target);
+  const petId = petSelected.id;
+  console.log(petSelected);
+  console.log(petId);
+  const result = await fetchPet(petId);
+  // listAnimals(result);
+  console.log(result);
+  notShowLoadingAlert();
 }
 
 async function getAnimals(specie) {

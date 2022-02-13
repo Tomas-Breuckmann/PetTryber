@@ -96,20 +96,28 @@ function listAnimals(list, clearMode) {
 }
 
 async function showMoreAnimals(event) {
+  showLoadingAlert();
   const specie = currentAnimal
   const page = `page=${event.target.id}`
   event.target.remove()
+  document.getElementById('para-o-topo').remove();
   const result = await fetchAnimals(`${specie}&${page}`);
+  notShowLoadingAlert();
   listAnimals(result);
 }
 
 function showMoreButton(currentPage) {
   const animalsList = document.querySelector('.available-animals');
   const nextPage = currentPage + 1
-  const button = createCustomElement('button', 'more-animals-button', 'Mostrar mais');
+
+  const button = createCustomElement('span', 'more-animals-button', 'Mostrar mais')
+  const upButton = createCustomElement('a', 'up-button', '<ion-icon name="arrow-up"></ion-icon>')
   button.id = nextPage;
+  upButton.id = 'para-o-topo';
+  upButton.href ='#topo-pagina';
   button.addEventListener('click', showMoreAnimals);
   animalsList.appendChild(button);
+  animalsList.appendChild(upButton);
 }
 
 function showPopUp(pet, img) {
@@ -118,7 +126,7 @@ function showPopUp(pet, img) {
   const showTheInfo = (element, content) => {
     const textElement = document.querySelector(element);
     textElement.innerText = content
-  };
+   };
   
   imageElement.src = img
   showTheInfo('#name', pet.name);
@@ -131,8 +139,10 @@ function showPopUp(pet, img) {
   showTheInfo('#email', pet.contact.email);
 
   popUp.classList.remove('hide-popup');
+
 }
 
+// em produção
 async function getPet({ target }) {
   showLoadingAlert();
   const petSelected = getElementOrClosest('.animal-container', target);

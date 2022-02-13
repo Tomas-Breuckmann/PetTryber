@@ -26,11 +26,19 @@ function notShowLoadingAlert() {
   frameLoading.removeChild(loadingAlert);
 }
 
+function closePopUp(event) {
+  const popUp = document.querySelector('.pop-up')
+  popUp.classList.add('hide-popup')
+}
+
 function configuraBotoes() {
   const botaoCat = document.querySelector('#options-cat');
   const botaoDog = document.querySelector('#options-dog');
   botaoCat.addEventListener('click', () => getAnimals('Cat'));
   botaoDog.addEventListener('click', () => getAnimals('Dog'));
+
+  const closePopupButton = document.querySelector('.close-popup')
+  closePopupButton.addEventListener('click', closePopUp)
 }
 
 const clearSelectedItem = (containerSelector) => {
@@ -54,12 +62,12 @@ function photoLocalizer(photo) {
 
 function generateAnimalElements(animal) {
   const animalsList = document.querySelector('.available-animals');
-  const { id, name, age, gender, breeds, pagination, primary_photo_cropped } = animal;
+  const { id, name, gender, breeds, primary_photo_cropped } = animal;
   const animalElement = createCustomElement('li', 'animal-container');
   const img = createCustomElement('img', 'animal-image');
   img.src = photoLocalizer(primary_photo_cropped);
 
-  animalElement.id = animal.id;
+  animalElement.id = id;
   animalElement.appendChild(img);
   animalElement.appendChild(createCustomElement('p', 'animal-name', `Nome: <strong>${name.substring(0,15)}</strong>`));
   animalElement.appendChild(createCustomElement('p', 'animal-breed', `Raça: <strong>${breeds.primary.substring(0,20)}</strong>`));
@@ -101,6 +109,7 @@ async function showMoreAnimals(event) {
 function showMoreButton(currentPage) {
   const animalsList = document.querySelector('.available-animals');
   const nextPage = currentPage + 1
+
   const button = createCustomElement('span', 'more-animals-button', 'Mostrar mais')
   const upButton = createCustomElement('a', 'up-button', '<ion-icon name="arrow-up"></ion-icon>')
   button.id = nextPage;
@@ -111,13 +120,37 @@ function showMoreButton(currentPage) {
   animalsList.appendChild(upButton);
 }
 
+function showPopUp(pet, img) {
+  const popUp = document.querySelector('.pop-up');
+  const imageElement = document.querySelector('.selected-pet-image');
+  const showTheInfo = (element, content) => {
+    const textElement = document.querySelector(element);
+    textElement.innerText = content
+   };
+  
+  imageElement.src = img
+  showTheInfo('#name', pet.name);
+  showTheInfo('#age', pet.age);
+  showTheInfo('#color', pet.colors.primary);
+  showTheInfo('#breed', pet.breeds.primary);
+  showTheInfo('#gender', pet.gender);
+  showTheInfo('.description-pet', pet.description);
+  showTheInfo('#phone', pet.contact.phone);
+  showTheInfo('#email', pet.contact.email);
+
+  popUp.classList.remove('hide-popup');
+
+}
+
 // em produção
 async function getPet({ target }) {
   showLoadingAlert();
   const petSelected = getElementOrClosest('.animal-container', target);
+  const petImg = petSelected.firstChild.src
   const petId = petSelected.id;
-  const result = await fetchPet(petId);
-  console.log(result);
+  const { animal } = await fetchPet(petId);
+  console.log(animal)
+  showPopUp(animal, petImg);
   notShowLoadingAlert();
 }
 

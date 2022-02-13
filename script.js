@@ -29,8 +29,17 @@ function notShowLoadingAlert() {
 function configuraBotoes() {
   const botaoCat = document.querySelector('#options-cat');
   const botaoDog = document.querySelector('#options-dog');
+  const botaoOthers = document.querySelector('#options-other');
   botaoCat.addEventListener('click', () => getAnimals('Cat'));
   botaoDog.addEventListener('click', () => getAnimals('Dog'));
+  botaoOthers.addEventListener('click', () => {
+      const fEspecie = Array.from(document.getElementsByName('especie'));
+      // console.log(fEspecie);
+      const sEspecie = fEspecie.find((element) => element.checked === true)
+      console.log(sEspecie.value);
+      console.log(typeof(sEspecie.value));
+      getAnimals(sEspecie.value);
+  });
 }
 
 const clearSelectedItem = (containerSelector) => {
@@ -123,7 +132,8 @@ async function getPet({ target }) {
 }
 
 async function getAnimals(specie) {
-  const selectedSpecie = document.querySelector(`#options-${specie.toLowerCase()}`);
+  const selectedSpecie = (specie !== 'Dog' && specie !== 'Cat') ? document.querySelector('#options-other'): document.querySelector(`#options-${specie.toLowerCase()}`);
+  // const selectedSpecie = document.querySelector(`#options-${specie.toLowerCase()}`);
   clearSelectedItem('.item-selected')
   selectedSpecie.classList.add('item-selected');
   if (currentAnimal !== specie) {

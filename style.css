@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Josefin+Sans:wght@200;500;700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto+Condensed:wght@300;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Josefin+Sans:wght@200;500;700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto+Condensed:wght@300;700&family=Ubuntu+Condensed&display=swap');
 
 * {
   margin: 0;
@@ -51,12 +51,20 @@ main {
   border-radius: 0 0 20px 20px;
 }
 
+a {
+  text-decoration: none;
+}
+
+/* quadro com imagem dos 4 pets */
+
 .container-call {
   width: 100%;
   height: 300px;
   background: url('images/pets001.jpg') no-repeat center;
   background-color: #fff;
 }
+
+/* menu para opções Dogs, Cats e Outros */
 
 .container-pets {
   display: flex;
@@ -70,18 +78,18 @@ main {
   height: 350px;
   border-radius: 20px;
   background-color: lightsteelblue;
+  color: navy;
   display: flex;
   flex-direction: column;
-}
-
-.pets:hover p {
-  color: white;
+  font-size: 2.5rem;
+  font-weight: 700;
 }
 
 .pets:hover {
   box-shadow: 0px 0px 10px 1px LightSkyBlue;
   cursor: pointer;
   background: navy;
+  color: white;
 }
 
 .pets:active {
@@ -97,12 +105,6 @@ main {
   color: white;
 }
 
-#options-dog.item-selected p,
-#options-cat.item-selected p,
-#options-other.item-selected p {
-  color: white;
-}
-
 .img-pet {
   width: 100%;
   height: 270px;
@@ -115,7 +117,6 @@ main {
   display: flex;
   width: 100%;
   height: 80px;
-  border-radius: 0 0 20px 20px;
   justify-content: center;
   align-items: center;
 }
@@ -124,11 +125,53 @@ main {
   border-radius: 20px 20px 0 0;
 }
 
-.specie-pet p {
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: navy;
+/* menu para outras espécies */
+
+#container-options-other.hidden {
+  display: none;
 }
+
+#container-options-other {
+  width: 100%;
+  height: 250px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.others-pets {
+  display: flex;
+  align-items: center;
+  width: 275px;
+  background: lightSteelblue;
+  color: navy;
+  border-radius: 20px;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.others-pets:hover {
+  box-shadow: 0px 0px 10px 1px LightSkyBlue;
+  background: navy;
+  color: white;
+  cursor: pointer;
+}
+
+.others-pets img {
+  width: 100px;
+  border-radius: 20px 0 0 20px;
+}
+
+.others-pets p {
+  margin-left: 5px;
+}
+
+.others-pets:active {
+  filter: brightness(1.5);
+}
+
+/* menu dos pets selecionados */
 
 .available-animals {
   display: flex;
@@ -159,8 +202,8 @@ main {
   color: white;
 }
 
-p.animal-container {
-  font-family: 'Roboto Condensed';
+.animal-container p {
+  font-family: 'Ubuntu Condensed';
 }
 
 .animal-image {
@@ -285,4 +328,55 @@ p.animal-container {
   color: navy;
   border-radius: 50px;
   cursor: pointer;
+}
+
+/* Rodapé */
+
+footer {
+  display: flex;
+  justify-content: center;
+  background-color: MidnightBlue;
+  padding: 5px;
+  margin: 50px 0 0 0;
+}
+
+#footer-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 1000px;
+  padding: 10px;
+}
+
+#footer-container img {
+  width: 150px;
+  border-radius: 10px;
+}
+
+#equipe {
+  display: flex;
+  flex-direction: column;
+}
+
+#equipe a {
+  text-decoration: none;
+  color: white;
+  font-weight: 200;
+  text-align: right;
+}
+
+#sobre,
+#sobre a {
+  color: white;
+  font-weight: 400;
+}
+
+#sobre a:hover {
+  color: white;
+  font-weight: 900;
+}
+
+#equipe a:hover {
+  font-weight: 600;
+  color: white;
 }

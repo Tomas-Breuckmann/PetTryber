@@ -35,10 +35,9 @@ function configuraBotoes() {
 
 const clearSelectedItem = (containerSelector) => {
   const element = document.querySelector(`${containerSelector}`);
-  console.log(element);
 
   if (element) {
-    element.classList.remove('item-selected');
+    element.classList.remove(containerSelector.substring(1, containerSelector.length));
   }
 };
 

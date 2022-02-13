@@ -334,6 +334,7 @@ a {
 
 footer {
   display: flex;
+  width: 100%;
   justify-content: center;
   background-color: MidnightBlue;
   padding: 5px;

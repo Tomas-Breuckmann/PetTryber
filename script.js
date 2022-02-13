@@ -34,9 +34,18 @@ function closePopUp(event) {
 function configuraBotoes() {
   const botaoCat = document.querySelector('#options-cat');
   const botaoDog = document.querySelector('#options-dog');
+  const botaoOthers = document.querySelector('#options-other');
   botaoCat.addEventListener('click', () => getAnimals('Cat'));
   botaoDog.addEventListener('click', () => getAnimals('Dog'));
-
+  botaoOthers.addEventListener('click', () => {
+      const fEspecie = Array.from(document.getElementsByName('especie'));
+      // console.log(fEspecie);
+      const sEspecie = fEspecie.find((element) => element.checked === true)
+      console.log(sEspecie.value);
+      console.log(typeof(sEspecie.value));
+      getAnimals(sEspecie.value);
+  });
+  
   const closePopupButton = document.querySelector('.close-popup')
   closePopupButton.addEventListener('click', closePopUp)
 }
@@ -142,20 +151,19 @@ function showPopUp(pet, img) {
 
 }
 
-// em produção
 async function getPet({ target }) {
   showLoadingAlert();
   const petSelected = getElementOrClosest('.animal-container', target);
   const petImg = petSelected.firstChild.src
   const petId = petSelected.id;
   const { animal } = await fetchPet(petId);
-  console.log(animal)
   showPopUp(animal, petImg);
   notShowLoadingAlert();
 }
 
 async function getAnimals(specie) {
-  const selectedSpecie = document.querySelector(`#options-${specie.toLowerCase()}`);
+  const selectedSpecie = (specie !== 'Dog' && specie !== 'Cat') ? document.querySelector('#options-other'): document.querySelector(`#options-${specie.toLowerCase()}`);
+  // const selectedSpecie = document.querySelector(`#options-${specie.toLowerCase()}`);
   clearSelectedItem('.item-selected')
   selectedSpecie.classList.add('item-selected');
   if (currentAnimal !== specie) {

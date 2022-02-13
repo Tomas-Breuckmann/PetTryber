@@ -10,7 +10,6 @@
 body {
   background-image: linear-gradient(#836fff99, white);
   margin-top: 30px;
-  margin-bottom: 50px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -213,6 +212,8 @@ a {
   object-fit: cover;
 }
 
+/* aviso CARREGANDO... */
+
 #loading {
   position: fixed;
   display: flex;
@@ -233,13 +234,15 @@ a {
   z-index: 50;
 }
 
+/* pop-up - ficha do pet selecionado */
+
 .pop-up {
   position: fixed;
   display: flex;
   width: 100%;
   height: 100vh;
   top: 0;
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(176, 196, 222, 0.5);
   justify-content: center;
   align-items: center;
   overflow-y: auto;
@@ -251,29 +254,40 @@ a {
   flex-direction: column;
   padding: 20px;
   border-radius: 30px;
-  background-color: beige;
+  background-color: lightsteelblue;
+  color: navy;
   font-size: 20px;
   overflow-y: auto;
   align-items: center;
+  box-shadow: 5px 10px 15px 5px gray;
 }
 
 .close-popup {
   position: absolute;
   width: 25px;
   height: 25px;
+  border-radius: 25px;
   vertical-align: top;
   margin-left: 580px;
   line-height: 25px;
   text-align: center;
-  border: red solid 1px;
+  background: navy;
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
 }
 
+.close-popup:hover {
+  background: firebrick;
+}
 .hide-popup {
   display: none;
 }
 
 .selected-pet-image {
   height: 250px;
+  border-radius: 10px;
+  border: solid 2px navy;
 }
 
 .label {
@@ -282,13 +296,17 @@ a {
 
 .description-pet {
   display: block;
-  border: 1px solid black;
+  border: 2px solid darkslateblue;
+  border-radius: 5px;
+  background: aliceblue;
   padding: 3px;
   height: 70px;
   word-wrap: break-word;
   overflow-y: auto;
 }
 
+/* botão para mostrar mais pets e botão para voltar ao topo da página */
+ 
 .more-animals-button {
   margin-top: 10px;
   width: 180px;

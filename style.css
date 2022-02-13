@@ -53,12 +53,17 @@ main {
 a {
   text-decoration: none;
 }
+
+/* quadro com imagem dos 4 pets */
+
 .container-call {
   width: 100%;
   height: 300px;
   background: url('images/pets001.jpg') no-repeat center;
   background-color: #fff;
 }
+
+/* menu para opções Dogs, Cats e Outros */
 
 .container-pets {
   display: flex;
@@ -72,18 +77,18 @@ a {
   height: 350px;
   border-radius: 20px;
   background-color: lightsteelblue;
+  color: navy;
   display: flex;
   flex-direction: column;
-}
-
-.pets:hover p {
-  color: white;
+  font-size: 2.5rem;
+  font-weight: 700;
 }
 
 .pets:hover {
   box-shadow: 0px 0px 10px 1px LightSkyBlue;
   cursor: pointer;
   background: navy;
+  color: white;
 }
 
 .pets:active {
@@ -99,12 +104,6 @@ a {
   color: white;
 }
 
-#options-dog.item-selected p,
-#options-cat.item-selected p,
-#options-other.item-selected p {
-  color: white;
-}
-
 .img-pet {
   width: 100%;
   height: 270px;
@@ -117,7 +116,6 @@ a {
   display: flex;
   width: 100%;
   height: 80px;
-  border-radius: 0 0 20px 20px;
   justify-content: center;
   align-items: center;
 }
@@ -126,11 +124,53 @@ a {
   border-radius: 20px 20px 0 0;
 }
 
-.specie-pet p {
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: navy;
+/* menu para outras espécies */
+
+#container-options-other.hidden {
+  display: none;
 }
+
+#container-options-other {
+  width: 100%;
+  height: 250px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.others-pets {
+  display: flex;
+  align-items: center;
+  width: 275px;
+  background: lightSteelblue;
+  color: navy;
+  border-radius: 20px;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.others-pets:hover {
+  box-shadow: 0px 0px 10px 1px LightSkyBlue;
+  background: navy;
+  color: white;
+  cursor: pointer;
+}
+
+.others-pets img {
+  width: 100px;
+  border-radius: 20px 0 0 20px;
+}
+
+.others-pets p {
+  margin-left: 5px;
+}
+
+.others-pets:active {
+  filter: brightness(1.5);
+}
+
+/* menu dos pets selecionados */
 
 .available-animals {
   display: flex;
@@ -233,6 +273,8 @@ a {
   cursor: pointer;
 }
 
+/* Rodapé */
+
 footer {
   display: flex;
   justify-content: center;
@@ -280,41 +322,4 @@ footer {
 #equipe a:hover {
   font-weight: 600;
   color: white;
-}
-
-#container-options-other.hidden {
-  display: none;
-}
-
-#container-options-other {
-  width: 100%;
-  height: 250px;
-  display: flex;
-}
-
-.specie-pet-others {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  flex-wrap: wrap;
-}
-
-.specie-pet-others p:hover {
-  box-shadow: 0px 0px 10px 1px LightSkyBlue;
-  background: navy;
-  color: white;
-  font-weight: 700;
-}
-
-.specie-pet-others p {
-  display: flex;
-  width: 275px;
-  height: 100px;
-  border-radius: 20px;
-  background: lightSteelblue;
-  color: navy;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.5rem;
-  font-weight: 700;
 }

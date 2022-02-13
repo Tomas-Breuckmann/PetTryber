@@ -38,7 +38,7 @@ const clearSelectedItem = (containerSelector) => {
   console.log(element);
 
   if (element) {
-    element.classList.remove('item-selected');
+    element.classList.remove(containerSelector);
   }
 };
 

@@ -151,14 +151,12 @@ function showPopUp(pet, img) {
 
 }
 
-// em produção
 async function getPet({ target }) {
   showLoadingAlert();
   const petSelected = getElementOrClosest('.animal-container', target);
   const petImg = petSelected.firstChild.src
   const petId = petSelected.id;
   const { animal } = await fetchPet(petId);
-  console.log(animal)
   showPopUp(animal, petImg);
   notShowLoadingAlert();
 }

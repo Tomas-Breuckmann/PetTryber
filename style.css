@@ -244,6 +244,7 @@ p.animal-container {
   height: 70px;
   word-wrap: break-word;
   overflow-y: auto;
+}
 
 .more-animals-button {
   margin-top: 10px;

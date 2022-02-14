@@ -4,7 +4,6 @@ async function fetchAnimals(specie) {
     method: 'GET',
     headers: {
       Authorization: `Bearer ${token}`,
-    
     }
   };
 
@@ -12,4 +11,8 @@ async function fetchAnimals(specie) {
   const response = await fetch(url, requestInfo);
   const data = await response.json();
   return data;
+}
+
+if (typeof module !== 'undefined') {
+  module.exports = fetchAnimals;
 }

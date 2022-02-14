@@ -108,7 +108,6 @@ function listAnimals(list, clearMode) {
     animals.forEach(generateAnimalElements);
     showMoreButton(pagination.current_page);
   }, 1000);
-  ;
 }
 
 async function showMoreAnimals(event) {

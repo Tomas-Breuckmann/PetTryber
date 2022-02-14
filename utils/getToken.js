@@ -15,3 +15,7 @@ async function getToken() {
   const { access_token } = await response.json();
   return access_token;
 };
+
+if (typeof module !== 'undefined') {
+  module.exports = getToken;
+}
